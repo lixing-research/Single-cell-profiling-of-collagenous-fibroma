@@ -1,5 +1,6 @@
 # data and large objects
-data/
+data/*
+!data/README.md
 results/
 *.rds
 *.Rds
