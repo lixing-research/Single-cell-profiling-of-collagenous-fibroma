@@ -1,0 +1,14 @@
+# Python packages used for RNA velocity (11_rna_velocity.py)
+scanpy
+scvelo==0.2.5
+anndata
+numpy
+pandas
+scipy
+scikit-learn
+matplotlib
+seaborn
+h5py
+python-igraph
+leidenalg
+umap-learn

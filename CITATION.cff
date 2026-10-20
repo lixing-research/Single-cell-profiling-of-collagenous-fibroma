@@ -1,0 +1,7 @@
+cff-version: 1.2.0
+message: "If you use this code, please cite the archived version."
+title: "Single-cell RNA-seq analysis code for collagenous fibroma"
+type: software
+authors:
+  - name: "The Authors"
+license: MIT

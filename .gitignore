@@ -1,0 +1,26 @@
+# data and large objects
+data/
+results/
+*.rds
+*.Rds
+*.h5ad
+*.loom
+*.bam
+*.bai
+*.mtx
+*.mtx.gz
+*.pdf
+*.png
+*.tif
+*.tiff
+
+# R / Python artefacts
+.Rhistory
+.RData
+.Rproj.user/
+__pycache__/
+*.pyc
+
+# OS
+.DS_Store
+Thumbs.db
