@@ -15,7 +15,7 @@ information are included.
 
 The analysis starts from a filtered count matrix in 10X-style format:
 
-```
+```text
 data/
 |-- CF_sample/output/filter_matrix/
 |   |-- barcodes.tsv.gz
@@ -34,7 +34,7 @@ Data are not included in this repository. If starting from FASTQ, run
 
 ## Repository structure
 
-```
+```text
 .
 |-- 00_upstream_dnbc4tools.sh
 |-- run_all.sh
@@ -81,40 +81,40 @@ the working directories:
 bash run_all.sh
 ```
 
-Manual order:
+Manual order. Run each block from the repository root; every command uses a
+subshell, so the working directory does not carry over between steps.
 
 ```bash
-cd 1.QC            && Rscript 01_data_import_qc.R
-cd ../2.harmony     && Rscript 02_batch_integration.R
-cd ../3.clustering_analysis && Rscript 03.a_clustering_analysis.R
-                                 Rscript 03.c_merged_clustering.R
-cd ../4.cell.annotation && Rscript 04_cell_annotation.R
-cd ../6.cell_proporion && Rscript 06_cell_proportion.R
-cd ../7.0.fibro_extrction && Rscript 07_fibroblast_extraction.R
-cd ../8.fibro_DEG && Rscript 8.fibro_DEG_analysis_final.R
-cd ../9.fibro_enrichment && Rscript 9.fibro_enrichment_analysis.R
-cd ../9.a_GSEA/01.0_data_preparation && Rscript code/01_prepare_pseudobulk.R
-cd ../02.0_gsea_overall && Rscript code/02_run_gsea.R
-cd ../04.0_leading_edge && Rscript code/04_extract_leading_edge.R
-cd ../../../10.1.fibro_trajectory && Rscript code/01_trajectory_SPF_root.R
+( cd 1.QC                      && Rscript 01_data_import_qc.R )
+( cd 2.harmony                 && Rscript 02_batch_integration.R )
+( cd 3.clustering_analysis     && Rscript 03.a_clustering_analysis.R )
+( cd 3.clustering_analysis     && Rscript 03.c_merged_clustering.R )
+( cd 4.cell.annotation         && Rscript 04_cell_annotation.R )
+( cd 6.cell_proporion          && Rscript 06_cell_proportion.R )
+( cd 7.0.fibro_extrction       && Rscript 07_fibroblast_extraction.R )
+( cd 8.fibro_DEG               && Rscript 8.fibro_DEG_analysis_final.R )
+( cd 9.fibro_enrichment        && Rscript 9.fibro_enrichment_analysis.R )
+( cd 9.a_GSEA/01.0_data_preparation && Rscript code/01_prepare_pseudobulk.R )
+( cd 9.a_GSEA/02.0_gsea_overall     && Rscript code/02_run_gsea.R )
+( cd 9.a_GSEA/04.0_leading_edge     && Rscript code/04_extract_leading_edge.R )
+( cd 10.1.fibro_trajectory     && Rscript code/01_trajectory_SPF_root.R )
 ```
 
 RNA velocity:
 
 ```bash
-cd 11.RNA_velocity
-python 01_prepare_fibro_data.py
-python 02_fibro_velocity_analysis.py
+( cd 11.RNA_velocity && python 01_prepare_fibro_data.py )
+( cd 11.RNA_velocity && python 02_fibro_velocity_analysis.py )
 ```
 
 Downstream analyses require intermediate files (see below):
 
 ```bash
-cd 12.scenic && Rscript A_scenic_publication_enhanced.R
-cd ../13.cellchat && Rscript A.cellchat_case_vs_control.R
-                     Rscript B.cellchat_fibro_subtypes.R
-cd .. && Rscript 16_infercnv_run.R
-cd 7.2.fibro_cnv && Rscript scripts/generate_cnv_figures_v2.R
+( cd 12.scenic          && Rscript A_scenic_publication_enhanced.R )
+( cd 13.cellchat        && Rscript A.cellchat_case_vs_control.R )
+( cd 13.cellchat        && Rscript B.cellchat_fibro_subtypes.R )
+( cd .                  && Rscript 16_infercnv_run.R )
+( cd 7.2.fibro_cnv      && Rscript scripts/generate_cnv_figures_v2.R )
 ```
 
 ---
